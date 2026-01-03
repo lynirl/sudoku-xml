@@ -24,7 +24,7 @@
     <case ligne="1" colonne="6" region="2">5</case>
     <case ligne="2" colonne="4" fixe="true" region="2">8</case>
     <case ligne="2" colonne="5" region="2">4</case>
-    <case ligne="2" colonne="6" region="2">4</case>
+    <case ligne="2" colonne="6" region="2">7</case>
     <case ligne="3" colonne="4" region="2">3</case>
     <case ligne="3" colonne="5" region="2">6</case>
     <case ligne="3" colonne="6" fixe="true" region="2">1</case>
@@ -86,7 +86,7 @@
   <region numero="7">
     <case ligne="7" colonne="1" region="7">2</case>
     <case ligne="7" colonne="2" fixe="true" region="7">3</case>
-    <case ligne="7" colonne="3" region="7">8</case>
+    <!-- <case ligne="7" colonne="3" region="7">8</case> -->
     <case ligne="8" colonne="1" region="7">5</case>
     <case ligne="8" colonne="2" region="7">4</case>
     <case ligne="8" colonne="3" fixe="true" region="7">9</case>

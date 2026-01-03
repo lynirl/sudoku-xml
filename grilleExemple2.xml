@@ -24,7 +24,7 @@
     <case ligne="1" colonne="6" region="2">5</case>
     <case ligne="2" colonne="4" fixe="true" region="2">8</case>
     <case ligne="2" colonne="5" region="2">4</case>
-    <case ligne="2" colonne="6" region="2">4</case>
+    <case ligne="2" colonne="6" region="2">7</case>
     <case ligne="3" colonne="4" region="2">3</case>
     <case ligne="3" colonne="5" region="2">6</case>
     <case ligne="3" colonne="6" fixe="true" region="2">1</case>
