@@ -8,14 +8,14 @@
   <!-- Variables globales pour les dimensions -->
   <xsl:variable name="cellSize" select="50"/>
   <xsl:variable name="gridSize" select="$cellSize * 9"/>
-  <xsl:variable name="margin" select="30"/>
+  <xsl:variable name="margin" select="80"/>
   
   <!-- Template principal -->
   <xsl:template match="/grilleSudoku">
     <svg xmlns="http://www.w3.org/2000/svg" 
          width="{$gridSize + 2 * $margin}" 
          height="{$gridSize + 2 * $margin + 100}"
-         viewBox="0 0 {$gridSize + 2 * $margin} {$gridSize + 2 * $margin + 100}">
+         viewBox="0 0 {$gridSize + 2 * $margin} {$gridSize + 2 * $margin + 150}">
       
       <!-- Définitions de styles -->
       <defs>
@@ -51,10 +51,7 @@
       </defs>
       
       <!-- Fond général -->
-      <rect x="0" y="0" width="{$gridSize + 2 * $margin}" height="{$gridSize + 2 * $margin + 100}" fill="#ffffff"/>
-      
-      <!-- Titre -->
-      <text x="{($gridSize + 2 * $margin) div 2}" y="20" class="title">Grille de Sudoku</text>
+      <rect x="0" y="0" width="{$gridSize + 2 * $margin}" height="{$gridSize + 2 * $margin + 150}" fill="#FEB6E8"/>
       
       <!-- Fond de la grille avec ombre -->
       <rect x="{$margin}" y="{$margin}" 
@@ -76,6 +73,9 @@
       
       <!-- Statut de la grille -->
       <xsl:call-template name="displayStatus"/>
+      
+      <!-- Image titre par-dessus tout -->
+      <image x="{($gridSize + 160) div 2 - 100}" y="10" width="200" height="60" href="assets\titre.gif"/>
       
     </svg>
   </xsl:template>
