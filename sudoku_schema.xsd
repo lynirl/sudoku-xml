@@ -52,7 +52,7 @@
   </xsd:complexType>
 
   <xsd:simpleType name="valeurType">
-    <xsd:restriction base="xsd:string">
+    <xsd:restriction base="xsd:integer">
       <xsd:minInclusive value="1"/>
       <xsd:maxInclusive value="9"/>
     </xsd:restriction>

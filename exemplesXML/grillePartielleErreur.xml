@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <region numero="1">
+        <case ligne="1" colonne="1" region="1" fixe="true">5</case>
+        <case ligne="1" colonne="2" region="1">3</case> <case ligne="2" colonne="2" region="1" fixe="true">3</case>
+    </region>
+    <region numero="2">
+        <case ligne="1" colonne="4" region="2">7</case>
+    </region>
+    <region numero="3"/><region numero="4"/><region numero="5"/>
+    <region numero="6"/><region numero="7"/><region numero="8"/><region numero="9"/>
+</grilleSudoku>
