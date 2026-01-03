@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:element name="grilleSudoku">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="region" type="regionType" minOccurs="9" maxOccurs="9"/>
+      </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:unique name="uniquePosition">
+      <xsd:selector xpath="region/case"/>
+      <xsd:field xpath="@ligne"/>
+      <xsd:field xpath="@colonne"/>
+    </xsd:unique>
+
+    <xsd:unique name="uniqueValeurLigne">
+      <xsd:selector xpath="region/case"/>
+      <xsd:field xpath="@ligne"/>
+      <xsd:field xpath="."/>
+    </xsd:unique>
+
+    <xsd:unique name="uniqueValeurColonne">
+      <xsd:selector xpath="region/case"/>
+      <xsd:field xpath="@colonne"/>
+      <xsd:field xpath="."/>
+    </xsd:unique>
+
+    <xsd:unique name="uniqueValeurBloc">
+      <xsd:selector xpath="region/case"/>
+      <xsd:field xpath="@region"/>
+      <xsd:field xpath="."/>
+    </xsd:unique>
+  </xsd:element>
+
+  <xsd:complexType name="regionType">
+    <xsd:sequence>
+      <xsd:element name="case" type="caseType" minOccurs="9" maxOccurs="9"/>
+    </xsd:sequence>
+    <xsd:attribute name="numero" type="numeroRegionType" use="required"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="caseType">
+    <xsd:simpleContent>
+      <xsd:extension base="valeurType">
+        <xsd:attribute name="ligne" type="positionType" use="required"/>
+        <xsd:attribute name="colonne" type="positionType" use="required"/>
+        <xsd:attribute name="fixe" type="xsd:boolean" default="false"/>
+        <xsd:attribute name="region" type="numeroRegionType" use="required"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:simpleType name="valeurType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[1-9]?"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="positionType">
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1"/>
+      <xsd:maxInclusive value="9"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="numeroRegionType">
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1"/>
+      <xsd:maxInclusive value="9"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>
