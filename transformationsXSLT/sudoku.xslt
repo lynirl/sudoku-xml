@@ -75,7 +75,7 @@
       <xsl:call-template name="displayStatus"/>
       
       <!-- Image titre par-dessus tout -->
-      <image x="{($gridSize + 160) div 2 - 100}" y="10" width="200" height="60" href="assets\titre.gif"/>
+      <image x="{($gridSize + 160) div 2 - 100}" y="10" width="200" height="60" href="../assets/titre.gif"/>
       
     </svg>
   </xsl:template>
