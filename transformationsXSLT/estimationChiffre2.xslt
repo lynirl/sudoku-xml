@@ -9,7 +9,7 @@
   <xsl:variable name="cellSize" select="50"/>
   <xsl:variable name="gridSize" select="$cellSize * 9"/>
   <xsl:variable name="margin" select="100"/>
-  <xsl:variable name="chiffre" select="1"/>
+  <xsl:variable name="chiffre" select="2"/>
   
   <!-- Template principal -->
   <xsl:template match="/grilleSudoku">
