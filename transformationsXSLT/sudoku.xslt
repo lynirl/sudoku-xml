@@ -16,9 +16,8 @@
          width="{$gridSize + 2 * $margin}" 
          height="{$gridSize + 2 * $margin + 100}"
          viewBox="0 0 {$gridSize + 2 * $margin} {$gridSize + 2 * $margin + 150}">
-      
-      <!-- Définitions de styles -->
-      <defs>
+    
+    <defs>
         <style type="text/css">
           .grid-line-thin { stroke: #999; stroke-width: 1; }
           .grid-line-thick { stroke: #333; stroke-width: 3; }
@@ -35,34 +34,21 @@
           .region-bg-1 { fill: #e8f4f8; }
           .region-bg-2 { fill: #fef5e7; }
         </style>
-        
-        <!-- Filtre d'ombre portée -->
-        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
-          <feOffset dx="2" dy="2" result="offsetblur"/>
-          <feComponentTransfer>
-            <feFuncA type="linear" slope="0.3"/>
-          </feComponentTransfer>
-          <feMerge>
-            <feMergeNode/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
       </defs>
       
-      <!-- Fond général -->
+      <!-- Background -->
       <rect x="0" y="0" width="{$gridSize + 2 * $margin}" height="{$gridSize + 2 * $margin + 150}" fill="#FEB6E8"/>
       
-      <!-- Fond de la grille avec ombre -->
+      <!-- Background grille -->
       <rect x="{$margin}" y="{$margin}" 
             width="{$gridSize}" height="{$gridSize}" 
             fill="white" stroke="#2c3e50" stroke-width="4" 
             filter="url(#shadow)"/>
       
-      <!-- Fond des régions (alternance de couleurs) -->
+      <!-- Background des régions (alternance de couleurs) -->
       <xsl:call-template name="drawRegionBackgrounds"/>
       
-      <!-- Fond des cases individuelles -->
+      <!-- Background des cases -->
       <xsl:apply-templates select="region/case" mode="background"/>
       
       <!-- Lignes de la grille -->
@@ -74,13 +60,13 @@
       <!-- Statut de la grille -->
       <xsl:call-template name="displayStatus"/>
       
-      <!-- Image titre par-dessus tout -->
+      <!-- Logo -->
       <image x="{($gridSize + 160) div 2 - 100}" y="10" width="200" height="60" href="../assets/titre.gif"/>
       
     </svg>
   </xsl:template>
   
-  <!-- Template pour dessiner les fonds des régions -->
+  <!-- Template pour les background des régions -->
   <xsl:template name="drawRegionBackgrounds">
     <xsl:variable name="regions" select="'1 3 5 7 9'"/>
     <xsl:for-each select="region">
@@ -103,7 +89,7 @@
     </xsl:for-each>
   </xsl:template>
   
-  <!-- Template pour le fond des cases -->
+  <!-- Template pour les background des cases -->
   <xsl:template match="case" mode="background">
     <xsl:variable name="x" select="$margin + (@colonne - 1) * $cellSize"/>
     <xsl:variable name="y" select="$margin + (@ligne - 1) * $cellSize"/>
@@ -217,9 +203,9 @@
       </xsl:attribute>
       
       <xsl:choose>
-        <xsl:when test="$hasErrors">❌ Grille INCORRECTE (doublons détectés)</xsl:when>
-        <xsl:when test="$isComplete">✓ Grille GAGNANTE !</xsl:when>
-        <xsl:otherwise>⚠ Grille CORRECTE (incomplète)</xsl:otherwise>
+        <xsl:when test="$hasErrors">Grille Incorrecte (doublons détectés)</xsl:when>
+        <xsl:when test="$isComplete">Grille Gagnante !</xsl:when>
+        <xsl:otherwise>Grille Correcte (incomplète)</xsl:otherwise>
       </xsl:choose>
     </text>
     
