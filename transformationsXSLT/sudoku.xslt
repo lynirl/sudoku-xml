@@ -62,6 +62,18 @@
       
       <!-- Logo -->
       <image x="{($gridSize + 160) div 2 - 100}" y="10" width="200" height="60" href="../assets/titre.gif"/>
+
+      <!--divider-->
+      <image x="{($gridSize + 2 * $margin) div 2 - 150}" y="{$gridSize + $margin + 95}" width="300" height="30" href="../assets/divider.gif"/>
+
+      <!--décoration gauche-->
+      <image x="40" y="{$gridSize + $margin + 70}" width="80" height="80" href="../assets/decor2.gif"/>
+
+      <!--décoration droite-->
+      <image x="{$gridSize + 2 * $margin - 120}" y="{$gridSize + $margin + 70}" width="80" height="80" href="../assets/decor3.gif"/>
+
+      <!--cadre -->
+      <image x="-40" y="-40" width="{$gridSize + 2 * $margin + 80}" height="{$gridSize + 2 * $margin + 100 + 80}" href="../assets/frame.png" preserveAspectRatio="none"/>
       
     </svg>
   </xsl:template>
