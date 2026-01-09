@@ -70,7 +70,7 @@
       <image x="40" y="{$gridSize + $margin + 70}" width="80" height="80" href="../assets/decor2.gif"/>
 
       <!--décoration droite-->
-      <image x="{$gridSize + 2 * $margin - 120}" y="{$gridSize + $margin + 70}" width="80" height="80" href="../assets/decor3.gif"/>
+      <image x="{$gridSize + 2 * $margin - 120}" y="{$gridSize + $margin + 70}" width="80" height="80" href="../assets/decor1.gif"/>
 
       <!--cadre -->
       <image x="-40" y="-40" width="{$gridSize + 2 * $margin + 80}" height="{$gridSize + 2 * $margin + 100 + 80}" href="../assets/frame.png" preserveAspectRatio="none"/>
