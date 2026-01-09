@@ -5,13 +5,13 @@
   
   <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
   
-  <!-- Variables globales pour les dimensions -->
+  <!--variables des dimensions-->
   <xsl:variable name="cellSize" select="50"/>
   <xsl:variable name="gridSize" select="$cellSize * 9"/>
   <xsl:variable name="margin" select="100"/>
   <xsl:variable name="chiffre" select="6"/>
   
-  <!-- Template principal -->
+  <!--template principal-->
   <xsl:template match="/grilleSudoku">
     <svg xmlns="http://www.w3.org/2000/svg" 
          width="{$gridSize + 2 * $margin}" 
@@ -41,42 +41,41 @@
         </style>
       </defs>
       
-      <!-- Background -->
+      <!--background + background grille-->
       <rect x="0" y="0" width="{$gridSize + 2 * $margin}" height="{$gridSize + 2 * $margin + 100}" fill="#FEB6E8"/>
       
-      <!-- Background grille -->
       <rect x="{$margin}" y="{$margin}" 
             width="{$gridSize}" height="{$gridSize}" 
             fill="white" stroke="#2c3e50" stroke-width="4" 
             filter="url(#shadow)"/>
       
-      <!-- Background des régions (alternance de couleurs) -->
+      <!--background des regions-->
       <xsl:call-template name="drawRegionBackgrounds"/>
       
-      <!-- Traitement de toutes les cases pour possibilités -->
+      <!--on traite toutes les cases-->
       <xsl:call-template name="processAllCells">
         <xsl:with-param name="ligne" select="1"/>
         <xsl:with-param name="colonne" select="1"/>
       </xsl:call-template>
       
-      <!-- Lignes de la grille -->
+      <!--lignes grille-->
       <xsl:call-template name="drawGrid"/>
       
-      <!-- Logo -->
+      <!--logo ✨sudoku✨-->
       <image x="{($gridSize + 2 * $margin) div 2 - 100}" y="10" width="200" height="60" href="../assets/titre.gif"/>
       
-      <!-- Titre -->
+      <!--titre-->
       <text x="{($gridSize + 2 * $margin) div 2}" y="80" class="title">
         Possibilités pour le chiffre <xsl:value-of select="$chiffre"/>
       </text>
       
-      <!-- Statut de la grille -->
+      <!--statut de la grille-->
       <xsl:call-template name="displayStatus"/>
       
     </svg>
   </xsl:template>
   
-  <!-- Template pour traiter toutes les cases de manière récursive -->
+  <!-- template qui traite toutes les cases de manière récursive -->
   <xsl:template name="processAllCells">
     <xsl:param name="ligne"/>
     <xsl:param name="colonne"/>
@@ -112,14 +111,14 @@
     </xsl:if>
   </xsl:template>
 
-  <!-- Calcul de la région d'une case -->
+  <!--calcul de la région d'une case-->
   <xsl:template name="getRegion">
     <xsl:param name="ligne"/>
     <xsl:param name="colonne"/>
     <xsl:value-of select="floor(($ligne - 1) div 3) * 3 + floor(($colonne - 1) div 3) + 1"/>
   </xsl:template>
 
-  <!-- Traitement d'une case individuelle -->
+  <!--traitement d'une (1) case individuelle-->
   <xsl:template name="processCell">
     <xsl:param name="ligne"/>
     <xsl:param name="colonne"/>
@@ -141,7 +140,7 @@
       </xsl:if>
     </xsl:variable>
     
-    <!-- Background de la case -->
+    <!--background case-->
     <rect x="{$x + 2}" y="{$y + 2}" width="{$cellSize - 4}" height="{$cellSize - 4}">
   <xsl:attribute name="class">
     <xsl:choose>
@@ -154,7 +153,7 @@
   </xsl:attribute>
 </rect>
     
-    <!-- Valeur de la case -->
+    <!--valeur case-->
     <xsl:variable name="textX" select="$x + $cellSize div 2"/>
     <xsl:variable name="textY" select="$y + $cellSize div 2"/>
     
@@ -172,7 +171,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <!-- Template pour les background des régions -->
+  <!--template pour background des régions-->
   <xsl:template name="drawRegionBackgrounds">
     <xsl:variable name="regions" select="'1 3 5 7 9'"/>
     <xsl:for-each select="region">
@@ -195,20 +194,20 @@
     </xsl:for-each>
   </xsl:template>
   
-  <!-- Template pour dessiner la grille -->
+  <!--template pour dessiner la grille-->
   <xsl:template name="drawGrid">
-    <!-- Lignes horizontales -->
+    <!--lignes horizontales-->
     <xsl:call-template name="drawHorizontalLines">
       <xsl:with-param name="current" select="0"/>
     </xsl:call-template>
     
-    <!-- Lignes verticales -->
+    <!--lignes verticales-->
     <xsl:call-template name="drawVerticalLines">
       <xsl:with-param name="current" select="0"/>
     </xsl:call-template>
   </xsl:template>
   
-  <!-- Lignes horizontales récursives -->
+  <!--lignes horizontales récursives-->
   <xsl:template name="drawHorizontalLines">
     <xsl:param name="current"/>
     <xsl:if test="$current &lt;= 9">
@@ -227,7 +226,7 @@
     </xsl:if>
   </xsl:template>
   
-  <!-- Lignes verticales récursives -->
+  <!--lignes verticales récursives-->
   <xsl:template name="drawVerticalLines">
     <xsl:param name="current"/>
     <xsl:if test="$current &lt;= 9">
@@ -246,7 +245,7 @@
     </xsl:if>
   </xsl:template>
 
-  <!-- Vérification si on peut placer un chiffre -->
+  <!--est ce qu'on peut placer un chiffre à cet endroit?-->
   <xsl:template name="canPlaceNumber">
     <xsl:param name="ligne"/>
     <xsl:param name="colonne"/>
@@ -262,12 +261,12 @@
     </xsl:choose>
   </xsl:template>
   
-  <!-- Template pour afficher le statut -->
+  <!--template pour afficher le statut -->
   <xsl:template name="displayStatus">
     <xsl:variable name="totalCases" select="count(region/case)"/>
     <xsl:variable name="isComplete" select="$totalCases = 81"/>
     
-    <!-- Variables pour validation -->
+    <!--variables nécessaires pr validation-->
     <xsl:variable name="duplicatesLigne">
       <xsl:call-template name="checkDuplicatesLigne"/>
     </xsl:variable>
@@ -282,7 +281,7 @@
     
     <xsl:variable name="hasErrors" select="contains($duplicatesLigne, 'true') or contains($duplicatesColonne, 'true') or contains($duplicatesRegion, 'true')"/>
     
-    <!-- Affichage du statut -->
+    <!--affichage statut de la grille-->
     <text x="{($gridSize + 2 * $margin) div 2}" y="{$gridSize + $margin + 50}">
       <xsl:attribute name="class">
         <xsl:choose>
@@ -299,14 +298,14 @@
       </xsl:choose>
     </text>
     
-    <!-- Statistiques -->
+    <!--statistiques-->
     <text x="{($gridSize + 2 * $margin) div 2}" y="{$gridSize + $margin + 75}" 
           style="font-family: Arial; font-size: 18px; text-anchor: middle; fill:rgb(38, 39, 40);">
       Cases remplies: <xsl:value-of select="$totalCases"/> / 81
     </text>
   </xsl:template>
   
-  <!-- Vérification des doublons dans les lignes -->
+  <!--vérification doublons dans les lignes-->
   <xsl:template name="checkDuplicatesLigne">
     <xsl:for-each select="region/case">
       <xsl:variable name="currentLigne" select="@ligne"/>
@@ -317,7 +316,7 @@
     </xsl:for-each>
   </xsl:template>
   
-  <!-- Vérification des doublons dans les colonnes -->
+  <!--vérification doublons dans les colonnes -->
   <xsl:template name="checkDuplicatesColonne">
     <xsl:for-each select="region/case">
       <xsl:variable name="currentColonne" select="@colonne"/>
@@ -328,7 +327,7 @@
     </xsl:for-each>
   </xsl:template>
   
-  <!-- Vérification des doublons dans les régions -->
+  <!--vérification doublons dans les régions-->
   <xsl:template name="checkDuplicatesRegion">
     <xsl:for-each select="region/case">
       <xsl:variable name="currentRegion" select="@region"/>
