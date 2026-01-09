@@ -60,6 +60,9 @@
       
       <!--lignes grille-->
       <xsl:call-template name="drawGrid"/>
+
+      <!--statut de la grille-->
+      <xsl:call-template name="displayStatus"/>
       
       <!--logo ✨sudoku✨-->
       <image x="{($gridSize + 2 * $margin) div 2 - 100}" y="10" width="200" height="60" href="../assets/titre.gif"/>
@@ -69,9 +72,6 @@
         Possibilités pour le chiffre <xsl:value-of select="$chiffre"/>
       </text>
       
-      <!--statut de la grille-->
-      <xsl:call-template name="displayStatus"/>
-
       <!--divider-->
       <image x="{($gridSize + 2 * $margin) div 2 - 150}" y="{$gridSize + $margin + 95}" width="300" height="30" href="../assets/divider.gif"/>
 

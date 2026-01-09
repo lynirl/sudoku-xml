@@ -60,6 +60,9 @@
       
       <!--lignes grille-->
       <xsl:call-template name="drawGrid"/>
+
+      <!--statut de la grille-->
+      <xsl:call-template name="displayStatus"/>
       
       <!--logo ✨sudoku✨-->
       <image x="{($gridSize + 2 * $margin) div 2 - 100}" y="10" width="200" height="60" href="../assets/titre.gif"/>
@@ -69,9 +72,20 @@
         Possibilités pour le chiffre <xsl:value-of select="$chiffre"/>
       </text>
       
-      <!--statut de la grille-->
-      <xsl:call-template name="displayStatus"/>
-      
+      <!--divider-->
+      <image x="{($gridSize + 2 * $margin) div 2 - 150}" y="{$gridSize + $margin + 95}" width="300" height="30" href="../assets/divider.gif"/>
+
+      <!--décoration gauche-->
+      <image x="40" y="{$gridSize + $margin + 70}" width="80" height="80" href="../assets/decor2.gif"/>
+
+      <!--décoration droite-->
+      <image x="{$gridSize + 2 * $margin - 120}" y="{$gridSize + $margin + 70}" width="80" height="80" href="../assets/decor1.gif"/>
+
+      <!--cadre -->
+      <image x="-40" y="-40" width="{$gridSize + 2 * $margin + 80}" height="{$gridSize + 2 * $margin + 100 + 80}" href="../assets/frame.png" preserveAspectRatio="none"/>
+
+
+
     </svg>
   </xsl:template>
   
@@ -304,7 +318,7 @@
       Cases remplies: <xsl:value-of select="$totalCases"/> / 81
     </text>
   </xsl:template>
-  
+
   <!--vérification doublons dans les lignes-->
   <xsl:template name="checkDuplicatesLigne">
     <xsl:for-each select="region/case">
